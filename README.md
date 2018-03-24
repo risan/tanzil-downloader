@@ -3,6 +3,8 @@
 [![Latest Stable Version](https://img.shields.io/npm/v/tanzil-downloader.svg)](https://www.npmjs.com/package/tanzil-downloader)
 [![Node Version](https://img.shields.io/node/v/tanzil-downloader.svg)](https://www.npmjs.com/package/tanzil-downloader)
 [![Build Status](https://travis-ci.org/risan/tanzil-downloader.svg?branch=master)](https://travis-ci.org/risan/tanzil-downloader)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/79340c0446feb214f3fe/test_coverage)](https://codeclimate.com/github/risan/tanzil-downloader/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/79340c0446feb214f3fe/maintainability)](https://codeclimate.com/github/risan/tanzil-downloader/maintainability)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/risan/tanzil-downloader)
 [![License](https://img.shields.io/npm/l/tanzil-downloader.svg)](https://www.npmjs.com/package/tanzil-downloader)
 
