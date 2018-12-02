@@ -1,61 +1,53 @@
-import EasyDownloader from 'easy-downloader';
+const easyDownload = require("easy-downloader");
+const filterObj = require("@risan/filter-obj");
 
-export default class TanzilDownloader {
-  static get DEFAULT_OPTIONS() {
-    return {
-      type: TanzilDownloader.TYPES.UTHMANI,
-      includePauseMarks: true,
-      includeSajdahSigns: true,
-      includeRubElHizbSigns: true,
-      output: TanzilDownloader.OUTPUT.TEXT_WITH_VERSE_NUMBERS
-    };
-  }
+const { UTHMANI } = require("./quran-types");
+const { TEXT_WITH_VERSE_NUMBERS } = require("./output-types");
 
-  static get DEFAULT_REQUEST_OPTIONS() {
-    return {
-      uri: 'http://tanzil.net/pub/download/download.php',
-      method: 'POST',
-      encoding: 'utf8'
-    };
-  }
+/**
+ * Download the quran text.
+ *
+ * @param {String} destination
+ * @param {String} options.type
+ * @param {String} options.output
+ * @param {Boolean} options.pauseMarks
+ * @param {Boolean} options.sajdahSigns
+ * @param {Boolean} options.rubElHizbSigns
+ * @param {Boolean} options.superscriptAlif
+ * @param {Boolean} options.differentTanweenShapes
+ * @return {Promise}
+ */
+const tanzilDownload = async (
+  destination,
+  {
+    type = UTHMANI,
+    output = TEXT_WITH_VERSE_NUMBERS,
+    pauseMarks = true,
+    sajdahSigns = true,
+    rubElHizbSigns = true,
+    superscriptAlif = true,
+    differentTanweenShapes = false
+  } = {}
+) => {
+  const boolOptions = {
+    marks: pauseMarks,
+    sajdah: sajdahSigns,
+    rub: rubElHizbSigns,
+    alef: superscriptAlif,
+    me_quran: differentTanweenShapes
+  };
 
-  static get TYPES() {
-    return {
-      SIMPLE: 'simple',
-      SIMPLE_ENHANCED: 'simple-enhanced',
-      SIMPLE_MINIMAL: 'simple-min',
-      SIMPLE_CLEAN: 'simple-clean',
-      UTHMANI: 'uthmani',
-      UTHMANI_MINIMAL: 'uthmani-min'
-    };
-  }
+  const url = "http://tanzil.net/pub/download/download.php";
 
-  static get OUTPUT() {
-    return {
-      TEXT: 'txt',
-      TEXT_WITH_VERSE_NUMBERS: 'txt-2',
-      XML: 'xml',
-      SQL: 'sql'
-    };
-  }
+  return easyDownload(url, destination, {
+    method: "POST",
+    body: {
+      quranType: type,
+      outType: output,
+      agree: true,
+      ...filterObj(boolOptions)
+    }
+  });
+};
 
-  static download({
-    destination,
-    options = TanzilDownloader.DEFAULT_OPTIONS,
-    requestOptions = TanzilDownloader.DEFAULT_REQUEST_OPTIONS
-  }) {
-    return EasyDownloader.download({
-      destination,
-      uri: requestOptions.uri,
-      method: requestOptions.method,
-      encoding: requestOptions.encoding,
-      formData: {
-        quranType: options.type,
-        marks: options.includePauseMarks,
-        sajdah: options.includeSajdahSigns,
-        rub: options.includeRubElHizbSigns,
-        outType: options.output
-      }
-    });
-  }
-}
+module.exports = tanzilDownload;

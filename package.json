@@ -1,56 +1,47 @@
 {
   "name": "tanzil-downloader",
-  "description": "Library for downloading quran text from tanzil.net",
-  "version": "1.0.0",
-  "license": "MIT",
+  "version": "2.0.0",
+  "description": "Download Quran text from tanzil.net",
+  "keywords": [
+    "downloader",
+    "tanzil",
+    "quran"
+  ],
   "homepage": "https://github.com/risan/tanzil-downloader#readme",
+  "bugs": {
+    "url": "https://github.com/risan/tanzil-downloader/issues"
+  },
+  "license": "MIT",
   "author": {
     "name": "Risan Bagja Pradana",
     "email": "risanbagja@gmail.com",
     "url": "https://risan.io"
   },
+  "main": "main/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/risan/tanzil-downloader.git"
-  },
-  "bugs": {
-    "url": "https://github.com/risan/tanzil-downloader/issues"
-  },
-  "keywords": [
-    "quran",
-    "tanzil",
-    "downloader"
-  ],
-  "main": "dist/tanzil-downloader.cjs.js",
-  "module": "dist/tanzil-downloader.esm.js",
-  "engines": {
-    "node": ">= 6"
+    "url": "https://github.com/risan/tanzil-downloader.git"
   },
   "scripts": {
-    "build": "NODE_ENV=build rollup -c",
-    "dev": "NODE_ENV=build rollup -c -w",
-    "lint": "eslint *.js src tests",
-    "lint-fix": "eslint *.js src tests --fix",
-    "prepublishOnly": "npm run test && npm run build",
-    "test": "NODE_ENV=jest jest"
+    "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix",
+    "prepublishOnly": "npm run lint && npm run test",
+    "test": "jest"
   },
   "dependencies": {
-    "easy-downloader": "^1.0.3"
+    "@risan/filter-obj": "1.x",
+    "easy-downloader": "2.x"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-jest": "^22.4.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.6.1",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.0",
-    "jest": "^22.4.3",
-    "prettier": "^1.11.1",
-    "rollup": "^0.57.1",
-    "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-eslint": "^4.0.0"
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
   }
 }

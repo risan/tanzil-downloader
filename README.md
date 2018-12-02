@@ -1,148 +1,81 @@
 # Tanzil Downloader
 
-[![Latest Stable Version](https://img.shields.io/npm/v/tanzil-downloader.svg)](https://www.npmjs.com/package/tanzil-downloader)
-[![Node Version](https://img.shields.io/node/v/tanzil-downloader.svg)](https://www.npmjs.com/package/tanzil-downloader)
-[![Build Status](https://travis-ci.org/risan/tanzil-downloader.svg?branch=master)](https://travis-ci.org/risan/tanzil-downloader)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/79340c0446feb214f3fe/test_coverage)](https://codeclimate.com/github/risan/tanzil-downloader/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/79340c0446feb214f3fe/maintainability)](https://codeclimate.com/github/risan/tanzil-downloader/maintainability)
-[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/risan/tanzil-downloader)
-[![License](https://img.shields.io/npm/l/tanzil-downloader.svg)](https://www.npmjs.com/package/tanzil-downloader)
+[![Build Status](https://flat.badgen.net/travis/risan/tanzil-downloader)](https://travis-ci.org/risan/tanzil-downloader)
+[![Test Coverage](https://flat.badgen.net/codeclimate/coverage/risan/tanzil-downloader)](https://codeclimate.com/github/risan/tanzil-downloader)
+[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/risan/tanzil-downloader)](https://codeclimate.com/github/risan/tanzil-downloader)
+[![Latest Stable Version](https://flat.badgen.net/npm/v/tanzil-downloader)](https://www.npmjs.com/package/tanzil-downloader)
+[![Node Version](https://flat.badgen.net/npm/node/tanzil-downloader)](https://www.npmjs.com/package/tanzil-downloader)
+[![Code Style: Prettier](https://flat.badgen.net/badge/code%20style/prettier/ff69b4)](https://github.com/prettier/prettier)
+[![License](https://flat.badgen.net/npm/license/tanzil-downloader)](https://github.com/risan/tanzil-downloader/blob/master/LICENSE)
 
-A JavaScript library for downloading Quran text from [tanzil.net](http://tanzil.net).
+Download Quran text from [tanzil.net](http://tanzil.net).
 
 ## Install
 
-```shell
+```bash
 $ npm install tanzil-downloader
 
-# Or if you prefer to use Yarn
-$ yan add tanzil-downloader
+# Or if you use Yarn
+$ yarn add tanzil-downloader
 ```
 
-## Usage
+## Quick Start
 
-Download Quran text and save it to `quran.txt` file.
+Download Quran text and save it to `quran.txt`.
 
 ```js
-const TanzilDownloader = require('tanzil-downloader');
+const tanzilDownloader = require("tanzil-downloader");
 
-TanzilDownloader
-  .download({ destination: 'quran.txt' })
-  .then(destination => console.log(`Quran text is downloaded to: ${destination}`))
-  .catch(e => console.error(e.message));
+(async () => {
+  try {
+    await tanzilDownloader("quran.txt");
+  } catch(error) {
+    console.error(error.message);
+  }
+})();
 ```
 
 ## API
 
 ```js
-TanzilDownloader.download({ destination, [options, requestOptions]});
+tanzilDownloader(destination, [options]);
 ```
 
-### Required Parameter:
+### Parameters
 
-- **`destination`** (*`String`*): The path where the downloaded Quran text will be stored.
+* `destination` (`String`): Location to save the downloaded file to.
+* `options` (optional `Object`): [tanzil.net](http://tanzil.net) Quran text download options
+  * `type` (`String`): The [Quran type](#quran-type) to download, default to `uthmani`.
+  * `output` (`String`): The [output type](#output-type), default to `txt-2` (text with verse numbers).
+  * `pauseMarks` (`Boolean`): Includes the pause marks, default to `true`.
+  * `sajdahSigns` (`Boolean`): Includes the sajdah signs (۩), default to `true`.
+  * `rubElHizbSigns` (`Boolean`): Includes the rub-el-hizb signs (۞), default to `true`.
+  * `superscriptAlif` (`Boolean`): Includes the [superscript alif](https://en.wikipedia.org/wiki/Dagger_alif), default to `true`. Only applicable to `type`: `simple`, `simple-enhanced`, and `simple-min`.
+  * `differentTanweenShapes` (`Boolean`): Use different tanween shapes (only for [me_quran font](http://tanzil.net/docs/me_quran_font)), default to `false`. Only applicable to `type`: `uthmani`
 
-### Optional Parameters:
-
-- **`options`** (*`Object`*): The Quran text options.
-- **`requestOptions`** (*`Object`*): The HTTP request options.
-
-#### `options` Object:
-
-`options` parameter is optional and the default value is:
-
-```js
-{
-  type: TanzilDownloader.TYPES.UTHMANI,
-  includePauseMarks: true,
-  includeSajdahSigns: true,
-  includeRubElHizbSigns: true,
-  output: TanzilDownloader.OUTPUT.TEXT_WITH_VERSE_NUMBERS
-}
-```
-
-- **`type`** (*`String`*): The Quran text type, check the [#quran-types] for all possible values.
-- **`includePauseMarks`** (*`Boolean`*): Include the pause marks or not.
-- **`includeSajdahSigns`** (*`Boolean`*): Include the sajdah signs or not.
-- **`includeRubElHizbSigns`** (*`Boolean`*): Include the rub-el-hizb signs or not.
-- **`output`** (*`String`*): The output type, check the [#output-types] for all possible values.
-
-#### `requestOptions` Object:
-
-`requestOptions` parameter is optional and the default value is:
-
-```js
-{
-  uri: 'http://tanzil.net/pub/download/download.php',
-  method: 'POST',
-  encoding: 'utf8'
-}
-```
-
-- **`uri`** (*`String`*): The URI to download the Quran text.
-- **`method`** (*`String`*): The HTTP request method.
-- **`encoding`** (*`String`*): Character encoding that will be used to interpret the response from the target URI. Check the Buffer [documentation](https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings) for more information.
-
-#### Example
-
-```js
-TanzilDownloader.download({
-    destination: 'quran.txt',
-    options: {
-      type: TanzilDownloader.TYPES.UTHMANI,
-      includePauseMarks: true,
-      includeSajdahSigns: true,
-      includeRubElHizbSigns: true,
-      output: TanzilDownloader.OUTPUT.TEXT_WITH_VERSE_NUMBERS
-    },
-    requestOptions: {
-      uri: 'http://tanzil.net/pub/download/download.php',
-      method: 'POST',
-      encoding: 'utf8'
-    }
-  })
-  .then(destination => console.log(`File is downloaded to: ${destination}`))
-  .catch(e => console.error(e.message));
-```
-
-### Quran Types
+### Quran Type
 
 The following Quran types are available to download:
 
-```js
-// Quran text in Imlaaei script.
-TanzilDownloader.TYPES.SIMPLE;
+* `simple`: Quran text in Imlaaei script.
+* `simple-enhanced`: Simple text without special demonstration of Ikhfas and Idghams.
+* `simple-min`: Simple text with minimal number of diacritics and symbols.
+* `simple-clean`: Simple text with no diacritics or symbols.
+* `uthmani`: Uthmani text, according to Medina Mushaf.
+* `uthmani-min`: Uthmani text with minimal number of diacritics and symbols.
 
-// Simple text without special demonstration of Ikhfas and Idghams.
-TanzilDownloader.TYPES.SIMPLE_ENHANCED;
-
-// Simple text with minimal number of diacritics and symbols.
-TanzilDownloader.TYPES.SIMPLE_MINIMAL;
-
-// Simple text with no diacritics or symbols.
-TanzilDownloader.TYPES.SIMPLE_CLEAN;
-
-// Uthmani text, according to Medina Mushaf.
-TanzilDownloader.TYPES.UTHMANI;
-
-// Uthmani text with minimal number of diacritics and symbols.
-TanzilDownloader.TYPES.UTHMANI_MINIMAL;
-```
-
-### Output Types
+### Output Type
 
 The following output types are available:
 
-```js
-TanzilDownloader.OUTPUT.TEXT;
-TanzilDownloader.OUTPUT.TEXT_WITH_VERSE_NUMBERS;
-TanzilDownloader.OUTPUT.XML;
-TanzilDownloader.OUTPUT.SQL;
-```
+* `txt`: Text file format.
+* `txt-2`: Text filr format with verse numbers.
+* `xml`: XML file format.
+* `sql`: MySQL dump file.
 
 ## License
 
-MIT © [Risan Bagja Pradana](https://risan.io)
+MIT © [Risan Bagja Pradana](https://bagja.net)
 
 ## Legal
 
