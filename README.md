@@ -73,6 +73,10 @@ The following output types are available:
 * `xml`: XML file format.
 * `sql`: MySQL dump file.
 
+## Related
+
+* [Quran JSON](https://github.com/risan/quran-json): Quran text and translations in JSON format.
+
 ## License
 
 MIT © [Risan Bagja Pradana](https://bagja.net)
