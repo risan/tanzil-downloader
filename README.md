@@ -1,25 +1,19 @@
 # Tanzil Downloader
 
-[![Build Status](https://flat.badgen.net/travis/risan/tanzil-downloader)](https://travis-ci.org/risan/tanzil-downloader)
-[![Test Coverage](https://flat.badgen.net/codeclimate/coverage/risan/tanzil-downloader)](https://codeclimate.com/github/risan/tanzil-downloader)
-[![Maintainability](https://flat.badgen.net/codeclimate/maintainability/risan/tanzil-downloader)](https://codeclimate.com/github/risan/tanzil-downloader)
-[![Latest Stable Version](https://flat.badgen.net/npm/v/tanzil-downloader)](https://www.npmjs.com/package/tanzil-downloader)
-[![Node Version](https://flat.badgen.net/npm/node/tanzil-downloader)](https://www.npmjs.com/package/tanzil-downloader)
-[![Code Style: Prettier](https://flat.badgen.net/badge/code%20style/prettier/ff69b4)](https://github.com/prettier/prettier)
-[![License](https://flat.badgen.net/npm/license/tanzil-downloader)](https://github.com/risan/tanzil-downloader/blob/master/LICENSE)
+[![Build Status](https://badgen.net/travis/risan/tanzil-downloader)](https://travis-ci.org/risan/tanzil-downloader)
+[![Test Covarage](https://badgen.net/codecov/c/github/risan/tanzil-downloader)](https://codecov.io/gh/risan/tanzil-downloader)
+[![Greenkeeper](https://badges.greenkeeper.io/risan/tanzil-downloader.svg)](https://greenkeeper.io)
+[![Latest Version](https://badgen.net/npm/v/tanzil-downloader)](https://www.npmjs.com/package/tanzil-downloader)
 
 Download Quran text from [tanzil.net](http://tanzil.net).
 
-## Install
+## Installation
 
 ```bash
 $ npm install tanzil-downloader
-
-# Or if you use Yarn
-$ yarn add tanzil-downloader
 ```
 
-## Quick Start
+## Usage
 
 Download Quran text and save it to `quran.txt`.
 
@@ -79,7 +73,7 @@ The following output types are available:
 
 ## License
 
-MIT © [Risan Bagja Pradana](https://bagja.net)
+[MIT](https://github.com/risan/tanzil-downloader/blob/master/LICENSE) © [Risan Bagja Pradana](https://bagja.net)
 
 ## Legal
 
