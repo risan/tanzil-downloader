@@ -73,7 +73,7 @@ The following output types are available:
 
 ## License
 
-[MIT](https://github.com/risan/tanzil-downloader/blob/master/LICENSE) © [Risan Bagja Pradana](https://bagja.net)
+[MIT](https://github.com/risan/tanzil-downloader/blob/master/LICENSE) © [Risan Bagja Pradana](https://risanb.com)
 
 ## Legal
 
