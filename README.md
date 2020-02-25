@@ -2,7 +2,6 @@
 
 [![Build Status](https://badgen.net/travis/risan/tanzil-downloader)](https://travis-ci.org/risan/tanzil-downloader)
 [![Test Covarage](https://badgen.net/codecov/c/github/risan/tanzil-downloader)](https://codecov.io/gh/risan/tanzil-downloader)
-[![Greenkeeper](https://badges.greenkeeper.io/risan/tanzil-downloader.svg)](https://greenkeeper.io)
 [![Latest Version](https://badgen.net/npm/v/tanzil-downloader)](https://www.npmjs.com/package/tanzil-downloader)
 
 Download Quran text from [tanzil.net](http://tanzil.net).
